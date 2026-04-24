@@ -1,0 +1,462 @@
+@import url('https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+
+/* ─── Container ─── */
+.Container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 1.5rem;
+}
+
+/* ─── Card (Apple Liquid Glass) ─── */
+.Card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.065);
+    backdrop-filter: blur(500px) saturate(2.4) brightness(2.12);
+    -webkit-backdrop-filter: blur(500px) saturate(2.4) brightness(2.12);
+    border-top: 1px solid rgba(255, 255, 255, 0.42);
+    border-left: 1px solid rgba(255, 255, 255, 0.16);
+    border-right: 1px solid rgba(255, 255, 255, 0.10);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 40px;
+    padding: 2.8rem 3rem 3.2rem;
+    width: 100%;
+    max-width: 980px;
+    display: grid;
+    grid-template-columns: 1.2fr 0.9fr;
+    gap: 3.5rem;
+    
+    box-shadow:
+        0 0 0 0.5px rgba(255, 255, 255, 0.14),
+        0 4px 24px rgba(0, 0, 0, 0.35),
+        0 32px 80px rgba(0, 0, 0, 0.55),
+        0 64px 120px rgba(0, 0, 0, 0.4),
+        inset 0 1.5px 0 rgba(255, 255, 255, 0.32),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.06),
+        inset 1px 0 0 rgba(255, 255, 255, 0.08),
+        inset -1px 0 0 rgba(255, 255, 255, 0.04);
+
+    opacity: 0;
+}
+.Card.animate {
+    animation: fade-up-glass 700ms cubic-bezier(0.22, 1, 0.36, 1) 100ms forwards;
+}
+
+/* ─── Left column ─── */
+.FormCol {
+    display: flex;
+    flex-direction: column;
+}
+
+.Heading {
+    font-size: 1.8rem;
+    font-family: var(--CalSans), sans-serif;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: -0.02em;
+    margin-bottom: 2rem;
+    text-shadow: 0 1px 12px rgba(0, 0, 0, 0.5);
+
+    opacity: 0;
+}
+.Heading.animate {
+    animation: slide-in-left 700ms cubic-bezier(0.22, 1, 0.36, 1) 250ms forwards;
+}
+
+.Fields {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    opacity: 0;
+}
+.Fields.animate {
+    animation: fade-in 600ms ease 450ms forwards;
+}
+
+/* ─── Form fields (glass-ified) ─── */
+.Field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.Label {
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 1);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-family: var(--CalSans);
+}
+
+.Input {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px) saturate(1.8);
+    -webkit-backdrop-filter: blur(20px) saturate(1.8);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-top-color: rgba(255, 255, 255, 0.18);
+    border-radius: 12px;
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.85);
+    font-family: monospace;
+    outline: none;
+    transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+    width: 100%;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+.Input::placeholder {
+    color: rgba(255, 255, 255, 0.25);
+    font-family: "Anonymous Pro", monospace;
+    font-weight: 200;
+    font-style: normal;
+}
+.Input:focus {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.32);
+    box-shadow: 
+        inset 0 1px 3px rgba(0, 0, 0, 0.2),
+        0 0 0 2px rgba(255, 255, 255, 0.04);
+}
+
+.Textarea {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px) saturate(1.8);
+    -webkit-backdrop-filter: blur(20px) saturate(1.8);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-top-color: rgba(255, 255, 255, 0.18);
+    border-radius: 12px;
+    padding: 0.8rem 1rem;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.85);
+    font-family: monospace;
+    outline: none;
+    resize: none;
+    height: 8.5rem;
+    transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+    width: 100%;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+.Textarea::placeholder {
+    color: rgba(255, 255, 255, 0.25);
+    font-family: "Anonymous Pro", monospace;
+    font-weight: 200;
+    font-style: normal;
+}
+.Textarea:focus {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.32);
+    box-shadow: 
+        inset 0 1px 3px rgba(0, 0, 0, 0.2),
+        0 0 0 2px rgba(255, 255, 255, 0.04);
+}
+
+/* ─── Button (glass with shine) ─── */
+.SendBtn {
+    align-self: flex-start;
+    margin-top: 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(20px) saturate(1.8);
+    -webkit-backdrop-filter: blur(20px) saturate(1.8);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-top-color: rgba(255, 255, 255, 0.28);
+    border-radius: 50px;
+    padding: 0.75rem 1.8rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #fff;
+    cursor: pointer;
+    font-family: inherit;
+    letter-spacing: 0.02em;
+    transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.2),
+        0 2px 8px rgba(0, 0, 0, 0.3);
+    position: relative;
+    overflow: hidden;
+}
+.SendBtn::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        115deg,
+        transparent 30%,
+        rgba(255, 255, 255, 0.1) 50%,
+        transparent 70%
+    );
+    transform: translateX(-100%);
+    transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    pointer-events: none;
+}
+.SendBtn:hover {
+    background: rgba(255, 255, 255, 0.16);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.25),
+        0 6px 16px rgba(0, 0, 0, 0.4);
+}
+.SendBtn:hover::before {
+    transform: translateX(100%);
+}
+.SendBtn:active {
+    transform: translateY(1px) scale(0.98);
+    box-shadow: 
+        inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+
+/* ─── Keyframes (updated to match modal) ─── */
+@keyframes fade-in {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes fade-up-glass {
+    0% {
+        opacity: 0;
+        transform: scale(0.92) translateY(24px);
+        filter: blur(4px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        filter: blur(0px);
+    }
+}
+
+@keyframes slide-in-left {
+    0% {
+        opacity: 0;
+        transform: translateX(-30px);
+        filter: blur(2px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+        filter: blur(0px);
+    }
+}
+
+@keyframes slide-in-right {
+    0% {
+        opacity: 0;
+        transform: translateX(30px);
+        filter: blur(2px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+        filter: blur(0px);
+    }
+}
+
+/* ─── Tablet (≤ 768px) ─── */
+@media (max-width: 768px) {
+    .Card {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        padding: 2.2rem 2rem 2.5rem;
+        max-width: 600px;
+    }
+
+    .Panel {
+        min-height: 220px;
+    }
+
+    .Heading {
+        font-size: 1.5rem;
+    }
+}
+
+/* ─── Mobile (≤ 480px) ─── */
+@media (max-width: 480px) {
+    .Container {
+        padding: 0 1rem;
+    }
+
+    .Card {
+        padding: 1.8rem 1.25rem 2rem;
+        gap: 1.8rem;
+        border-radius: 20px;
+    }
+
+    .Heading {
+        font-size: 1.3rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .Panel {
+        min-height: 180px;
+    }
+
+    .GlowBR {
+        width: 160px;
+        height: 160px;
+    }
+    
+    .Input, .Textarea {
+        padding: 0.7rem 0.875rem;
+        font-size: 0.85rem;
+    }
+    
+    .Textarea {
+        height: 7rem;
+    }
+    
+    .SendBtn {
+        padding: 0.65rem 1.5rem;
+    }
+}
+
+.SuccessMessage {
+    background: rgba(46, 213, 115, 0.15);
+    border: 1px solid rgba(46, 213, 115, 0.3);
+    border-radius: 12px;
+    padding: 12px 16px;
+    color: #a8f0c6;
+    font-size: 0.9rem;
+    backdrop-filter: blur(10px);
+    animation: fade-in 0.3s ease;
+}
+
+.ErrorMessage {
+    background: rgba(255, 71, 87, 0.15);
+    border: 1px solid rgba(255, 71, 87, 0.3);
+    border-radius: 12px;
+    padding: 12px 16px;
+    color: #ffa5b0;
+    font-size: 0.9rem;
+    backdrop-filter: blur(10px);
+    animation: fade-in 0.3s ease;
+}
+
+.SendBtn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+/* ─── Right column ─── */
+.PanelCol {
+    display: flex;
+    align-items: stretch;   /* ← add this */
+    opacity: 0;
+}
+.PanelCol.animate {
+    animation: slide-in-right 700ms cubic-bezier(0.22, 1, 0.36, 1) 300ms forwards;
+}
+
+.Panel {
+    position: relative;
+    width: 100%;
+     height: 100%;
+    min-height: 300px;
+    border-radius: 18px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    cursor: default;
+    transition: border-color 2.4s ease, box-shadow 2.4s ease;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07), 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+.Panel:hover {
+    border-color: rgba(255, 255, 255, 0.04);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03), 0 4px 24px rgba(0, 0, 0, 0.6);
+}
+
+.PanelBase {
+    position: absolute;
+    inset: 0;
+    background: #0e0e0e;
+    border-radius: 18px;
+}
+
+.PanelCanvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;       /* ← already there, make sure it's not missing */
+    border-radius: 18px;
+    transition: opacity 2.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.Panel:hover .PanelCanvas {
+    opacity: 1;   /* was 0 — now marble stays, frost dims it */
+}
+
+
+.PanelFrost {
+    position: absolute;
+    inset: 0;
+    border-radius: 18px;
+    pointer-events: none;
+    opacity: 0;
+    background: rgba(4, 20, 10, 0.70);   /* dark green tint instead of near-black */
+    transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.Panel:hover .PanelFrost {
+    opacity: 1;
+}
+
+.PanelContent {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    
+    opacity: 0;
+    transform: translateY(10px);
+    
+    transition: all 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+    z-index: 3;
+}
+
+/* Show content on hover */
+.Panel:hover .PanelContent {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.Badge {
+    background: rgba(46, 213, 115, 0.15);
+    border: 1px solid rgba(46, 213, 115, 0.4);
+    color: #a8f0c6;
+    padding: 6px 14px;
+    font-family: var(--CalSans), sans-serif;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    backdrop-filter: blur(10px);
+}
+
+.PanelButtons {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.PanelBtn {
+    padding: 0.6rem 1.2rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    color: #fff;
+    text-decoration: none;
+    font-family: var(--CalSans), sans-serif;
+    display: inline-flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(12px);
+    transition: all 0.25s ease;
+}
+
+.PanelBtn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+.Panel:hover .PanelContent {
+    transition-delay: 0.3s;
+}

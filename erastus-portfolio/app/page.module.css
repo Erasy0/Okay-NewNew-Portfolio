@@ -1,0 +1,201 @@
+/* ══════════════════════════════════════════════════════
+   page.module.css — Horizontal Scroll Layout
+   ══════════════════════════════════════════════════════ */
+
+/* ── Root ─────────────────────────────────────────────── */
+.root {
+  background-color: #040404;
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  position: relative;
+}
+
+/* ── Fixed header ─────────────────────────────────────── */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  padding-top: 1.5rem;
+  pointer-events: none; /* let clicks pass through empty space */
+}
+
+.header > * {
+  pointer-events: auto;
+}
+
+/* ── Horizontal scroll container ─────────────────────── */
+.scrollContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden; /* JS drives all scrolling */
+  /* Smooth hardware-accelerated scroll */
+  scroll-behavior: smooth;
+  will-change: scroll-position;
+}
+
+/* ── Individual section ───────────────────────────────── */
+.section {
+  flex: 0 0 100vw;
+  width: 100vw;
+  height: 100dvh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* Projects section — allow internal scroll for long content */
+.sectionProjects {
+  overflow-y: auto;
+  overflow-x: hidden;
+  align-items: flex-start;
+  padding-top: 6rem;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.08) transparent;
+}
+.sectionProjects::-webkit-scrollbar {
+  width: 4px;
+}
+.sectionProjects::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+}
+
+/* ── Section progress dots ────────────────────────────── */
+.progressDots {
+  position: fixed;
+  right: 1.75rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition:
+    background 0.35s ease,
+    transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1),
+    height 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+}
+
+.dot::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+}
+
+.dot:hover {
+  background: rgba(255, 255, 255, 0.5);
+  transform: scale(1.4);
+}
+
+.dotActive {
+  background: rgba(255, 255, 255, 0.9);
+  transform: scaleY(3);
+  border-radius: 3px;
+  height: 14px;
+  width: 5px;
+}
+
+/* ── Section transition overlay ──────────────────────── */
+/*  Each section gets a subtle dark vignette  */
+.section::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 55%,
+    rgba(4, 4, 4, 0.55) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ── Scroll hint ──────────────────────────────────────── */
+.scrollHint {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  color: rgba(255, 255, 255, 0.28);
+  z-index: 60;
+  animation: hintBounce 2.2s ease-in-out infinite;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+}
+
+.scrollHintHidden {
+  opacity: 0;
+}
+
+.scrollHintText {
+  font-size: 0.55rem;
+  letter-spacing: 0.3em;
+  font-family: monospace;
+}
+
+@keyframes hintBounce {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50%       { transform: translateX(-50%) translateY(8px); }
+}
+
+/* ── Tablet ───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .progressDots {
+    right: 0.85rem;
+  }
+}
+
+/* ── Mobile ───────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .sectionProjects {
+    padding-top: 5rem;
+  }
+
+  .progressDots {
+    display: none; /* too cramped on small screens */
+  }
+}
+/* For WebKit browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 2px; /* thin width */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent; /* hide the track */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: white;
+  border-radius: 10px;
+}
+
+/* For Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: white transparent;
+}
