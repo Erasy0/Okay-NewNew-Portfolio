@@ -1,0 +1,256 @@
+/* ─── Liquid Glass Navbar ─── */
+
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+.Navbar {
+   position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem 2.5rem;
+
+    /* Liquid glass base */
+    background: linear-gradient(
+        135deg,
+        rgba(0, 0, 0, 0.18) 0%,
+        rgba(0, 0, 0, 0.28) 40%,
+        rgba(0, 0, 0, 0.12) 100%
+    );
+     
+    backdrop-filter: blur(1200px) saturate(200%) brightness(7.05);
+    -webkit-backdrop-filter: blur(1200px) saturate(200%) brightness(7.05);
+
+    border-radius: 9999px;
+
+    /* Multi-layer border for glass edge refraction */
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    outline: 1px solid rgba(255, 255, 255, 0.08);
+    outline-offset: -2px;
+
+    /* Layered shadows: depth + chromatic glow */
+    box-shadow:
+        /* top specular highlight */
+        inset 0 1.5px 0 rgba(255, 255, 255, 0.55),
+        /* bottom inner shadow for glass depth */
+        inset 0 -1px 0 rgba(255, 255, 255, 0.15),
+        /* left rim light */
+        inset 1.5px 0 0 rgba(255, 255, 255, 0.2),
+        /* right rim shadow */
+        inset -1.5px 0 0 rgba(0, 0, 0, 0.08),
+        /* soft ambient shadow */
+        0 8px 32px rgba(0, 0, 0, 0.12),
+        /* deep drop shadow */
+        0 2px 8px rgba(0, 0, 0, 0.08),
+        /* subtle chromatic prismatic glow */
+        0 0 40px rgba(255, 255, 255, 0.06);
+
+    color: #fff;
+
+
+    /* Animated conic gradient border shimmer */
+    position: sticky;
+    isolation: isolate;
+
+    transition:
+        box-shadow 0.4s ease,
+        background 0.4s ease,
+        transform 0.3s ease;
+}
+
+/* Prismatic shimmer overlay via ::before */
+.Navbar::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background: linear-gradient(
+        105deg,
+        rgba(255, 255, 255, 0.02) 0%,
+        rgba(0, 0, 0, 0.22) 30%,
+        rgba(200, 220, 255, 0.08) 50%,
+        #ffc8dc0f 70%,
+        rgba(255, 255, 255, 0.02) 100%
+    );
+    pointer-events: none;
+    z-index: 1;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    
+}
+
+/* Animated rainbow edge shimmer via ::after */
+.Navbar::after {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: 9999px;
+    background: conic-gradient(
+        from var(--angle),
+        rgba(255, 100, 100, 0.0),
+        rgba(45, 45, 45, 0.25),
+        rgba(8, 8, 8, 0.2),
+        rgba(21, 21, 21, 0.25),
+        rgba(37, 37, 37, 0.2),
+        rgba(255, 100, 100, 0.0)
+    );
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    padding: 1px;
+    animation: spin 6s linear infinite;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.6;
+}
+
+@keyframes spin {
+    to { --angle: 360deg; }
+}
+
+/* Hover: intensify the liquid feel */
+.Navbar:hover {
+    box-shadow:
+        inset 0 2px 0 rgba(255, 255, 255, 0.65),
+        inset 0 -1px 0 rgba(255, 255, 255, 0.2),
+        inset 1.5px 0 0 rgba(255, 255, 255, 0.25),
+        inset -1.5px 0 0 rgba(0, 0, 0, 0.1),
+        0 12px 40px rgba(0, 0, 0, 0.16),
+        0 4px 12px rgba(0, 0, 0, 0.1),
+        0 0 60px rgba(255, 255, 255, 0.1);
+    background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.22) 0%,
+        rgba(255, 255, 255, 0.08) 40%,
+        rgba(255, 255, 255, 0.16) 100%
+    );
+    transform: translateY(-1px);
+}
+
+/* ─── Nav List ─── */
+.NavList {
+    display: flex;
+    gap: 3rem;
+    position: relative;
+    z-index: 2; /* above ::before shimmer overlay */
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.NavList a {
+    color: rgba(255, 255, 255, 0.92);
+    text-decoration: none;
+    font-family: var(--JuliusSansOne);
+    font-size: 1.4rem;
+    letter-spacing: 0.05em;
+    position: relative;
+
+    /* Subtle text shadow for glass legibility */
+    text-shadow:
+        0 1px 2px rgba(0, 0, 0, 0.25),
+        0 0 12px rgba(255, 255, 255, 0.15);
+
+    transition:
+        color 0.3s ease,
+        transform 0.25s ease,
+        text-shadow 0.3s ease;
+}
+
+/* Liquid underline on hover */
+.NavList a::after {
+    content: "";
+    position: absolute;
+    bottom: -3px;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.8),
+        transparent
+    );
+    border-radius: 9999px;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.NavList a:hover {
+    color: #ffffff;
+    transform: scale(1.07) translateY(-1px);
+    text-shadow:
+        0 1px 3px rgba(0, 0, 0, 0.3),
+        0 0 20px rgba(255, 255, 255, 0.4);
+}
+
+.NavList a:hover::after {
+    transform: translateX(-50%) scaleX(1);
+}
+
+/* ─── Blur mask layer (sits behind navbar, above page content) ─── */
+.NavbarBlurMask {
+    position: absolute; /* changed from fixed */
+    inset: 0;
+    height: 120px;
+    z-index: 0;
+    backdrop-filter: blur(96px) saturate(180%);
+    -webkit-backdrop-filter: blur(96px) saturate(180%);
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    pointer-events: none;
+}
+
+/* ─── Tablet (≤ 768px) ─── */
+@media (max-width: 768px) {
+    .Navbar {
+        top: 0.75rem;
+        padding: 0.85rem 1.8rem;
+    }
+
+    .NavList {
+        gap: 2rem;
+    }
+
+    .NavList a {
+        font-size: 1.15rem;
+    }
+}
+
+/* ─── Mobile (≤ 480px) ─── */
+@media (max-width: 480px) {
+    .Navbar {
+        top: 0.5rem;
+        padding: 0.7rem 1.4rem;
+        border-radius: 9999px;
+        width: calc(100% - 2rem);
+        margin: 0 1rem;
+        box-sizing: border-box;
+    }
+
+    .NavList {
+        gap: 1.2rem;
+    }
+
+    .NavList a {
+        font-size: 0.85rem;
+        letter-spacing: 0.04em;
+    }
+}
+
+/* ─── Very small screens (≤ 360px) ─── */
+@media (max-width: 360px) {
+    .NavList {
+        gap: 0.85rem;
+    }
+
+    .NavList a {
+        font-size: 0.75rem;
+    }
+}
