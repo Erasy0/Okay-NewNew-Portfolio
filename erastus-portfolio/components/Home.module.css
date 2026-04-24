@@ -1,0 +1,262 @@
+.Title {
+    font-size: 4rem;
+    margin-bottom: -0.8rem;
+    color: #fff;
+    margin-left: 7rem;
+    font-family: var(--Boldye);
+    background: linear-gradient(
+        355deg,
+        #b2b2b2 26%,
+        #bebebe 20%,
+        #272727 55%,
+        #000000 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    opacity: 0;
+}
+.Title.animate {
+    animation: slide-in-left 900ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 200ms forwards;
+}
+
+.Title2 {
+    font-size: 4rem;
+    margin-bottom: -4rem;
+    color: #fff;
+    font-family: var(--Boldye);
+    background: linear-gradient(
+        320deg,
+        #e3e3e3 30%,
+        #d8d8d8 20%,
+        #3d3d3d 55%,
+        #000000 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    opacity: 0;
+}
+.Title2.animate {
+    animation: slide-in-right 900ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 400ms forwards;
+}
+
+.year {
+    font-size: 13rem;
+    margin-left: 7rem;
+    font-family: var(--CalSans);
+    background: linear-gradient(
+        280deg,
+        #e3e3e3 41%,
+        #dadada 20%,
+        #3d3d3d 55%,
+        #000000 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    opacity: 0;
+}
+.year.animate {
+    animation: year-reveal 1100ms cubic-bezier(0.16, 1, 0.3, 1) 700ms forwards;
+}
+
+.text {
+    font-size: 1.9rem;
+    color: #fff;
+    margin-left: 40rem;
+    margin-top: -7.8rem;
+    font-family: var(--CalSans);
+
+    opacity: 0;
+}
+.text.animate {
+    animation: fade-in 800ms cubic-bezier(0.39, 0.575, 0.565, 1.0) 1500ms forwards;
+}
+
+.glow1 {
+    font-size: 1.9rem;
+    background-color: #ffffff;
+    margin-left: 41rem;
+    margin-top: -4.8rem;
+    height: 5.7rem;
+    width: 7.2rem;
+    filter: blur(40px);
+    opacity: 0;
+}
+.glow1.animate {
+    animation: fade-in 800ms cubic-bezier(0.39, 0.575, 0.565, 1.0) 1500ms forwards;
+}
+
+.scrollIndicator {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    opacity: 0;
+    cursor: default;
+    user-select: none;
+}
+
+/* New: inner wrapper bounces independently */
+.scrollIndicatorInner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+}
+.scrollIndicator.animate .scrollIndicatorInner {
+    animation: bounce 2s ease-in-out 2800ms infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50%       { transform: translateY(8px); }
+}
+
+.scrollLabel {
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    color: currentColor;
+}
+
+.scrollArrow {
+    display: block;
+}
+
+/* ─── Keyframes ─── */
+
+@keyframes fade-in {
+    0%   { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes year-reveal {
+    0% {
+        opacity: 0;
+        transform: scale(0.88) translateY(12px);
+        filter: blur(18px);
+    }
+    60% {
+        filter: blur(2px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        filter: blur(0px);
+    }
+}
+
+@keyframes slide-in-left {
+    0% {
+        transform: translateX(-80px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes slide-in-right {
+    0% {
+        transform: translateX(80px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%       { transform: translateX(-50%) translateY(10px); }
+}
+
+
+/* ─── Tablet (≤ 768px) ─── */
+@media (max-width: 768px) {
+    .Title {
+        font-size: 2.4rem;
+        margin-left: 2rem;
+        margin-bottom: -0.5rem;
+    }
+
+    .Title2 {
+        font-size: 2.4rem;
+        margin-bottom: -2.5rem;
+        margin-left: 2rem;
+    }
+
+    .year {
+        font-size: 7rem;
+        margin-left: 2rem;
+    }
+
+    .text {
+        font-size: 1.2rem;
+        margin-left: 2rem;
+        margin-top: 1.5rem;
+    }
+
+    .glow1 {
+        margin-left: 2rem;
+        margin-top: -3.5rem;
+        height: 4rem;
+        width: 5rem;
+        filter: blur(28px);
+        background-color: #ffffff;
+        font-size: 1.9rem;
+    }
+}
+
+/* ─── Mobile (≤ 480px) ─── */
+@media (max-width: 480px) {
+    .Title {
+        font-size: 2rem;
+        margin-left: 1.25rem;
+        margin-bottom: -0.3rem;
+        margin-top: 0;
+    }
+
+    .Title2 {
+        font-size: 2rem;
+        margin-bottom: -2rem;
+        margin-left: 1.25rem;
+    }
+
+    .year {
+        font-size: 5.6rem;
+        margin-left: 1.45rem;
+    }
+
+    .text {
+        font-size: 1.1rem;
+        margin-left: 13.5rem;
+        margin-top: -3.8rem;
+        padding-left: 1.25rem;
+        letter-spacing: 0.2em;
+    }
+
+    .glow1 {
+        margin-left: 18.25rem;
+        margin-top: 0.9rem;
+        height: 0.001rem;
+        width: 0.001rem;
+        background: #ffffff;
+        mix-blend-mode: screen;
+        box-shadow:
+            0 0 40px 20px rgba(255, 255, 255, 1),
+            0 0 80px 40px rgba(255, 255, 255, 0.8),
+            0 0 120px 60px rgba(255, 255, 255, 0.6);
+    }
+
+    .scrollIndicator {
+        bottom: 1.5rem;
+    }
+}
