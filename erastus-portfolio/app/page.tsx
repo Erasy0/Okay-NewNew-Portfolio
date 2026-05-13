@@ -26,7 +26,7 @@ export default function Home() {
         <section id="About" className="flex justify-center items-center min-h-screen">
           <About />
         </section>
-        <section id="Contact" className="flex justify-center items-center min-h-screen">
+        <section id="contact" className="flex justify-center items-center min-h-screen">
           <Contact/>
         </section>
       </main>
